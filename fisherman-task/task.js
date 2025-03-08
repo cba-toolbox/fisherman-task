@@ -3,7 +3,7 @@ var instruction = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `
     <div style="text-align: center;">
-      <img src="fisherman-task/stimuli/fish_instruction.svg" width="500px">
+      <img src="fisherman-task/stimuli/fish_instruction.png" width="500px">
     </div>
     <p style='text-align:left'>
       湖Aには，ニジマス（赤い線のある魚）が８割，ワカサギ（色の薄い魚）が２割います。<br>
@@ -20,17 +20,25 @@ var instruction = {
 
 /*刺激の設定*/
 var stimuli = [
-  {stimulus: 'fisherman-task/stimuli/fish01.svg'},
-  {stimulus: 'fisherman-task/stimuli/fish02.svg'},
-  {stimulus: 'fisherman-task/stimuli/fish03.svg'},
-  {stimulus: 'fisherman-task/stimuli/fish04.svg'},
-  {stimulus: 'fisherman-task/stimuli/fish05.svg'},
-  {stimulus: 'fisherman-task/stimuli/fish06.svg'},
-  {stimulus: 'fisherman-task/stimuli/fish07.svg'},
-  {stimulus: 'fisherman-task/stimuli/fish08.svg'},
-  {stimulus: 'fisherman-task/stimuli/fish09.svg'},
-  {stimulus: 'fisherman-task/stimuli/fish10.svg'},
+  {stimulus: 'fisherman-task/stimuli/fish01.png'},
+  {stimulus: 'fisherman-task/stimuli/fish02.png'},
+  {stimulus: 'fisherman-task/stimuli/fish03.png'},
+  {stimulus: 'fisherman-task/stimuli/fish04.png'},
+  {stimulus: 'fisherman-task/stimuli/fish05.png'},
+  {stimulus: 'fisherman-task/stimuli/fish06.png'},
+  {stimulus: 'fisherman-task/stimuli/fish07.png'},
+  {stimulus: 'fisherman-task/stimuli/fish08.png'},
+  {stimulus: 'fisherman-task/stimuli/fish09.png'},
+  {stimulus: 'fisherman-task/stimuli/fish10.png'},
 ];
+
+/*刺激の事前ロード*/
+var preload = {
+    type: jsPsychPreload,
+    images: stimuli.map(s => s.stimulus) ,
+    message: '画像を読み込んでいます...', 
+    show_detailed_errors: true
+}
 
 
 /*fisherman課題*/
@@ -48,7 +56,7 @@ var fisherman = {
     max: 100,
     start: 50,
     button_label: "次へ",
-    render_on_canvas: false,
+    render_on_canvas: true,
     on_load: function() {
       let slider = document.querySelector('input[type="range"]');
       let output = document.getElementById('slider-value');
@@ -73,4 +81,4 @@ const debrief = {
 };
 
 /*タイムラインの設定*/
-const timeline = [welcome, fullscreen, instruction, fisherman, debrief];
+const timeline = [preload, welcome, fullscreen, instruction, fisherman, debrief];
