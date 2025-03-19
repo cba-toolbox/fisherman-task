@@ -20,17 +20,18 @@ var instruction = {
 
 /*刺激の設定*/
 var stimuli = [
-  {stimulus: 'fisherman-task/stimuli/fish01.png'},
-  {stimulus: 'fisherman-task/stimuli/fish02.png'},
-  {stimulus: 'fisherman-task/stimuli/fish03.png'},
-  {stimulus: 'fisherman-task/stimuli/fish04.png'},
-  {stimulus: 'fisherman-task/stimuli/fish05.png'},
-  {stimulus: 'fisherman-task/stimuli/fish06.png'},
-  {stimulus: 'fisherman-task/stimuli/fish07.png'},
-  {stimulus: 'fisherman-task/stimuli/fish08.png'},
-  {stimulus: 'fisherman-task/stimuli/fish09.png'},
-  {stimulus: 'fisherman-task/stimuli/fish10.png'},
+  {stimulus: 'fisherman-task/stimuli/fish01.png', fish_dominant: 1},
+  {stimulus: 'fisherman-task/stimuli/fish02.png', fish_dominant: 1},
+  {stimulus: 'fisherman-task/stimuli/fish03.png', fish_dominant: 1},
+  {stimulus: 'fisherman-task/stimuli/fish04.png', fish_dominant: 0},
+  {stimulus: 'fisherman-task/stimuli/fish05.png', fish_dominant: 1},
+  {stimulus: 'fisherman-task/stimuli/fish06.png', fish_dominant: 1},
+  {stimulus: 'fisherman-task/stimuli/fish07.png', fish_dominant: 1},
+  {stimulus: 'fisherman-task/stimuli/fish08.png', fish_dominant: 1},
+  {stimulus: 'fisherman-task/stimuli/fish09.png', fish_dominant: 0},
+  {stimulus: 'fisherman-task/stimuli/fish10.png', fish_dominant: 1},
 ];
+
 
 /*刺激の事前ロード*/
 var preload = {
@@ -62,6 +63,12 @@ var fisherman = {
       let output = document.getElementById('slider-value');
       slider.oninput = function() {
         output.textContent = this.value;
+      };
+    },
+    data: function() {
+      return {
+        stimulus: jsPsych.timelineVariable('stimulus'),
+        fish_dominant: jsPsych.timelineVariable('fish_dominant')
       };
     }
   }],
